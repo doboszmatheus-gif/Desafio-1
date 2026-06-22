@@ -1,0 +1,71 @@
+Algoritmo "Caixa_Eletronico"
+
+Função exibir_menu()
+    Escreva("1 - Consultar saldo")
+    Escreva("2 - Depositar")
+    Escreva("3 - Sacar")
+    Escreva("4 - Sair")
+    Leia(opcao)
+    Retorne opcao
+FimFunção
+
+Função depositar(saldo, valor)
+    Se valor > 0 Então
+        saldo <- saldo + valor
+    Senão
+        Escreva("Valor inválido")
+    FimSe
+    Retorne saldo
+FimFunção
+
+Função sacar(saldo, valor)
+    Se valor <= 0 Então
+        Escreva("Valor inválido")
+    Senão
+        Se valor <= saldo Então
+            saldo <- saldo - valor
+        Senão
+            Escreva("Saldo insuficiente")
+        FimSe
+    FimSe
+    Retorne saldo
+FimFunção
+
+Função consultar_saldo(saldo)
+    Escreva("Saldo atual: R$", saldo)
+FimFunção
+
+Var
+saldo, valor: Real
+opcao: Inteiro
+
+Inicio
+saldo <- 0
+
+Repita
+    opcao <- exibir_menu()
+
+    Escolha opcao
+        Caso 1
+            consultar_saldo(saldo)
+
+        Caso 2
+            Escreva("Digite o valor do depósito: ")
+            Leia(valor)
+            saldo <- depositar(saldo, valor)
+
+        Caso 3
+            Escreva("Digite o valor do saque: ")
+            Leia(valor)
+            saldo <- sacar(saldo, valor)
+
+        Caso 4
+            Escreva("Saindo...")
+
+        OutroCaso
+            Escreva("Opção inválida")
+    FimEscolha
+
+Até opcao = 4
+
+FimAlgoritmo
